@@ -1,6 +1,6 @@
 #include "gemm_utils.h"
 
-// ===================== 辅助函数实现 =====================
+// ===================== Utility Functions =====================
 void init_matrix(DataType* mat, int rows, int cols) {
     srand(time(nullptr));
     for (int i = 0; i < rows * cols; ++i) {
@@ -25,7 +25,7 @@ double calculate_gflops(int iterations, double total_time_ms) {
     return gflops;
 }
 
-// ===================== Naive GEMM 核函数（CUDA）=====================
+// ===================== Naive GEMM Kernel =====================
 /**
  * @brief Naive implementation of matrix multiplication kernel (row-major, no shared memory optimization)
  */
@@ -43,7 +43,7 @@ __global__ void naive_gemm_kernel(const DataType* A, const DataType* B, DataType
     }
 }
 
-// ===================== Naive GEMM 封装实现 =====================
+// ===================== Naive GEMM Wrapper =====================
 void naive_gemm(DataType* d_A, DataType* d_B, DataType* d_C, int M, int N, int K) {
     // Thread block size (32x32 adapted to CUDA warp size)
     dim3 block_dim(32, 32);
@@ -57,7 +57,7 @@ void naive_gemm(DataType* d_A, DataType* d_B, DataType* d_C, int M, int N, int K
     CHECK_CUDA_ERROR(cudaGetLastError());
 }
 
-// ===================== cuBLAS GEMM 封装实现 =====================
+// ===================== cuBLAS GEMM Wrapper =====================
 void cublas_gemm(cublasHandle_t handle, DataType* d_A, DataType* d_B, DataType* d_C, int M, int N, int K) {
     const DataType alpha = 1.0f;
     const DataType beta = 0.0f;

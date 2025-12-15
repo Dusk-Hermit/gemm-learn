@@ -81,21 +81,21 @@ int main() {
     // -------------------- 6. Result verification --------------------
     std::cout << "\n=== Result Verification ===" << std::endl;
     if (verify_result(h_C_cublas, h_C_naive, M * N)) {
-        std::cout << "✅ Naive GEMM results match cuBLAS!" << std::endl;
+        std::cout << "Naive GEMM results match cuBLAS!" << std::endl;
     } else {
-        std::cerr << "❌ Naive GEMM results do NOT match cuBLAS!" << std::endl;
+        std::cerr << "Naive GEMM results do NOT match cuBLAS!" << std::endl;
         exit(EXIT_FAILURE);
     }
 
     // -------------------- 7. Performance comparison output --------------------
     std::cout << "\n=== Performance Comparison (Matrix Size: " << M << "×" << K << " × " << K << "×" << N << ") ===" << std::endl;
     std::cout << "Test Iterations: " << TEST_ITERATIONS << std::endl;
-    std::cout << "┌─────────────┬──────────────┬─────────────┐" << std::endl;
-    std::cout << "│ Implementation │ Avg Time(ms) │ GFLOPS      │" << std::endl;
-    std::cout << "├─────────────┼──────────────┼─────────────┤" << std::endl;
-    std::cout << "│ Naive GEMM  │ " << naive_avg_time_ms << " │ " << naive_gflops << " │" << std::endl;
-    std::cout << "│ cuBLAS GEMM │ " << cublas_avg_time_ms << " │ " << cublas_gflops << " │" << std::endl;
-    std::cout << "└─────────────┴──────────────┴─────────────┘" << std::endl;
+    std::cout << "==============================================" << std::endl;
+    std::cout << ": Implementation : Avg Time(ms) : GFLOPS      :" << std::endl;
+    std::cout << "==============================================" << std::endl;
+    std::cout << ": Naive GEMM  : " << naive_avg_time_ms << " : " << naive_gflops << " :" << std::endl;
+    std::cout << ": cuBLAS GEMM : " << cublas_avg_time_ms << " : " << cublas_gflops << " :" << std::endl;
+    std::cout << "==============================================" << std::endl;
     std::cout << "Performance Gap: cuBLAS is " << naive_avg_time_ms / cublas_avg_time_ms << " times faster than Naive" << std::endl;
 
     // -------------------- 8. Resource release --------------------
@@ -119,6 +119,6 @@ int main() {
     // Reset CUDA device
     CHECK_CUDA_ERROR(cudaDeviceReset());
 
-    std::cout << "\n🎉 Test Completed!" << std::endl;
+    std::cout << "\n Test Completed!" << std::endl;
     return 0;
 }

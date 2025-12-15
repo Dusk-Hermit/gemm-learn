@@ -1,5 +1,11 @@
 cmake_minimum_required(VERSION 3.20)
 
+# Set cmake policy for CUDA integration
+# This addresses the CMP0146 warning by explicitly using the new approach
+if(POLICY CMP0146)
+  cmake_policy(SET CMP0146 NEW)
+endif()
+
 project(gemm_test LANGUAGES C CXX CUDA)
 
 find_package(CUDAToolkit REQUIRED)
@@ -19,19 +25,11 @@ if(ENABLE_CUDA_DEBUG)
     set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -G")        # enable cuda-gdb (may significantly affect performance on some targets)
 else()
     set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -lineinfo") # add line information to all builds for debug tools (exclusive to -G option)
+    set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -O3") 
 endif()
 
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} --extended-lambda")
+# set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} --extended-lambda")
 
-# if(MSVC)
-# cmake_policy(SET CMP0091 NEW)
-# cmake_policy(SET CMP0104 NEW)
-#     add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
-#     add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
-#     # add_compile_options($<$<COMPILE_LANGUAGE:CXX>:/EHsc /W1 /O2 /MD /GR>)
-#     add_compile_options($<$<COMPILE_LANGUAGE:CUDA>:-Xcompiler="/EHsc /W1 /O2 /MD /GR">)
-
-# endif()
 
 add_executable(gemm_test
     src/naive_gemm.cu
