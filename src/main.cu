@@ -1,7 +1,10 @@
 #include "gemm_utils.h"
 
 int main() {
+
+    std::cout << "=== GEMM Test ===" << std::endl;
     // -------------------- 1. Host memory allocation and initialization --------------------
+    std::cout << "Initializing matrices..." << std::endl;
     DataType* h_A = new DataType[M * K];
     DataType* h_B = new DataType[K * N];
     DataType* h_C_naive = new DataType[M * N];
@@ -11,6 +14,7 @@ int main() {
     init_matrix(h_B, K, N);
 
     // -------------------- 2. Device memory allocation and data copy --------------------
+    std::cout << "Allocating device memory..." << std::endl;
     DataType *d_A, *d_B, *d_C_naive, *d_C_cublas;
     CHECK_CUDA_ERROR(cudaMalloc(&d_A, M * K * sizeof(DataType)));
     CHECK_CUDA_ERROR(cudaMalloc(&d_B, K * N * sizeof(DataType)));
@@ -21,6 +25,7 @@ int main() {
     CHECK_CUDA_ERROR(cudaMemcpy(d_B, h_B, K * N * sizeof(DataType), cudaMemcpyHostToDevice));
 
     // -------------------- 3. Initialize cuBLAS handle --------------------
+    std::cout << "Initializing cuBLAS handle..." << std::endl;
     cublasHandle_t cublas_handle;
     CHECK_CUBLAS_ERROR(cublasCreate(&cublas_handle));
 

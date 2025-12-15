@@ -30,10 +30,11 @@ endif()
 
 # set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} --extended-lambda")
 
-# 导致报错的原因
-# if(MSVC)
-# add_compile_options("/source-charset:utf-8")
-# endif()
+
+if(MSVC)
+# add_compile_options(/utf-8) # 导致报错的原因
+# add_compile_options(/wd4819) # 禁用C4819警告
+endif()
 
 add_executable(gemm_test
     src/naive_gemm.cu
