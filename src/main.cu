@@ -88,7 +88,7 @@ int main() {
     }
 
     // -------------------- 7. Performance comparison output --------------------
-    std::cout << "\n=== Performance Comparison (Matrix Size: " << M << "×" << K << " × " << K << "×" << N << ") ===" << std::endl;
+    std::cout << "\n=== Performance Comparison (Matrix Size: " << M << "x" << K << " x " << K << "x" << N << ") ===" << std::endl;
     std::cout << "Test Iterations: " << TEST_ITERATIONS << std::endl;
     std::cout << "==============================================" << std::endl;
     std::cout << ": Implementation : Avg Time(ms) : GFLOPS      :" << std::endl;
