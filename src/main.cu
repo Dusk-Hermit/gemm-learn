@@ -75,11 +75,12 @@ int main() {
     double cublas_avg_time_ms = cublas_time_ms / TEST_ITERATIONS;
     double cublas_gflops = calculate_gflops(TEST_ITERATIONS, cublas_time_ms);
 
+        //多分段
     // Copy results to host
     CHECK_CUDA_ERROR(cudaMemcpy(h_C_cublas, d_C_cublas, M * N * sizeof(DataType), cudaMemcpyDeviceToHost));
 
     // -------------------- 6. Result verification --------------------
-    std::cout << "\n=== Result Verification ===" << std::endl;
+    std::cout << "\n=== Result Verification ===的 " << std::endl;
     if (verify_result(h_C_cublas, h_C_naive, M * N)) {
         std::cout << "Naive GEMM results match cuBLAS!" << std::endl;
     } else {

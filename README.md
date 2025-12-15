@@ -9,3 +9,7 @@ https://github.com/danila-permogorskii/cuda-ml-example/blob/master/CMakeLists.tx
 
 
 CMakeLists.txt的cuda写法，可以参考https://github.com/NVIDIA/cuda-samples/blob/master/Samples/CMakeLists.txt
+
+中文注释没有问题，中文print会输出乱码。加上CMakeLists.txt的utf-8设置会导致报错
+
+
