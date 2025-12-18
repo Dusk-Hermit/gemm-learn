@@ -1,0 +1,18 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "default",
+      "description": "Default settings for my cmake project",
+      "hidden": false,
+      "generator": "Visual Studio 17 2022",
+      "binaryDir": "${workspaceFolder}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+        "CUDA_PATH": "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.1",
+        "CUDA_PATH_V13_1": "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.1"
+      }
+    }
+  ]
+}

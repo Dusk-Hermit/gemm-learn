@@ -8,6 +8,9 @@ endif()
 
 project(gemm_test LANGUAGES C CXX CUDA)
 
+# include(CTest)
+# enable_testing()
+
 find_package(CUDAToolkit REQUIRED)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
